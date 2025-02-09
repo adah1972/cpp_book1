@@ -20,8 +20,8 @@ void doA()
 {
     cout << "doA starts\n";
     int answer = 42;
-    context.post(doB);
-    context.post([answer] { doC(answer); });
+    post(context, doB);
+    post(context, [answer] { doC(answer); });
     cout << "doA ends\n";
 }
 
@@ -41,7 +41,7 @@ void doC(const int& n)
 
 int main()
 {
-    context.post(doA);
+    post(context, doA);
     vector<scoped_thread> threads;
     threads.emplace_back([] { context.run(); });
     threads.emplace_back([] { context.run(); });

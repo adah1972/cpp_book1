@@ -31,6 +31,6 @@ void doA()
 
 int main()
 {
-    context.post(doA);
+    post(context, doA);
     context.run();
 }

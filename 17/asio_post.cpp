@@ -16,8 +16,8 @@ void doC();
 void doA()
 {
     cout << "doA starts\n";
-    context.post(doB);
-    context.post(doC);
+    post(context, doB);
+    post(context, doC);
     cout << "doA ends\n";
 }
 
@@ -37,6 +37,6 @@ void doC()
 
 int main()
 {
-    context.post(doA);
+    post(context, doA);
     context.run();
 }

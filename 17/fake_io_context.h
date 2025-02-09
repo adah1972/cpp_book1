@@ -67,6 +67,11 @@ private:
     int last_tasks_executing_;
 };
 
+inline void post(io_context& ctx, io_context::task_t task)
+{
+    ctx.post(std::move(task));
+}
+
 } // namespace asio
 
 #endif // FAKE_IO_CONTEXT_H
