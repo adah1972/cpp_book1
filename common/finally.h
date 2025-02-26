@@ -9,7 +9,7 @@ class final_action {
 public:
     explicit final_action(T action) : action_(std::move(action)) {}
 
-    final_action(final_action&& other)
+    final_action(final_action&& other) noexcept
         : action_(std::move(other.action_)),
           is_active_(std::exchange(other.is_active_, false))
     {
