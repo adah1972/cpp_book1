@@ -48,20 +48,20 @@ auto finally(T&& action)
 // Similar to final_action, with the differences that the contained
 // action will not be invoked on an exception propagation path.
 template <typename T>
-class on_return_action {
+class on_return {
 public:
-    explicit on_return_action(T action)
+    explicit on_return(T action)
         : action_(std::move(action)),
           uncaught_exceptions_on_entry_(std::uncaught_exceptions())
     {
     }
 
-    on_return_action(const on_return_action&) = delete;
-    on_return_action(on_return_action&&) = delete;
-    on_return_action& operator=(const on_return_action&) = delete;
-    on_return_action& operator=(on_return_action&&) = delete;
+    on_return(const on_return&) = delete;
+    on_return(on_return&&) = delete;
+    on_return& operator=(const on_return&) = delete;
+    on_return& operator=(on_return&&) = delete;
 
-    ~on_return_action()
+    ~on_return()
     {
         if (std::uncaught_exceptions() == uncaught_exceptions_on_entry_) {
             action_();
@@ -72,12 +72,6 @@ private:
     T action_;
     int uncaught_exceptions_on_entry_;
 };
-
-template <typename T>
-auto on_return(T&& action)
-{
-    return on_return_action<std::decay_t<T>>(std::forward<T>(action));
-}
 
 #endif
 
