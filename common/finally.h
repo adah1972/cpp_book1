@@ -45,8 +45,9 @@ auto finally(T&& action)
 
 #if __cpp_lib_uncaught_exceptions >= 201411L
 
-// Similar to final_action, with the differences that the contained
-// action will not be invoked on an exception propagation path.
+// Similar to final_action but with the key difference that the
+// contained action will not be invoked during exception propagation.
+// Requires C++17 or later.
 template <typename T>
 class on_return {
 public:
