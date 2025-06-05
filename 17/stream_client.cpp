@@ -28,7 +28,19 @@ int main(int argc, char* argv[])
             return 2;
         }
 
-        thread thrd{[&s] { cout << s.rdbuf(); }};
+        thread thrd{[&s] {
+#ifndef _CPPLIB_VER
+            cout << s.rdbuf();
+            // This simple method does not work properly with the
+            // MSVC standard library.
+#else
+            // Thus this workaround.
+            char ch{};
+            while (s.get(ch)) {
+                cout << ch;
+            }
+#endif
+        }};
 
         string line;
         for (;;) {
