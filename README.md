@@ -7,3 +7,7 @@
 要了解本书的更多内容，可以参考图灵图书网站里关于本书的介绍（其中包含了样章的下载）：
 
 <https://www.ituring.com.cn/book/3410>
+
+本书目前的勘误可从这里下载：
+
+<http://wyw.dcweb.cn/cppbook1_errata.pdf>
