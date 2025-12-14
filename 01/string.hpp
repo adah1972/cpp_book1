@@ -26,7 +26,7 @@ public:
             char* ptr = nullptr;
             if (rhs.len_ != 0) {
                 ptr = new char[rhs.len_ + 1];
-                memcpy(ptr, rhs.ptr_, len_ + 1);
+                memcpy(ptr, rhs.ptr_, rhs.len_ + 1);
             }
             delete[] ptr_;
             ptr_ = ptr;
