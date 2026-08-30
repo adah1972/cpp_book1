@@ -9,8 +9,11 @@ int main()
     string line;
     regex pat(R"(\w+([.%+-]?\w+)*@\w+([.-]?\w+)*\.\w{2,})");
 
-    while (cin) {
+    for (;;) {
         getline(cin, line);
+        if (!cin) {
+            break;
+        }
         sregex_iterator pos(line.cbegin(), line.cend(), pat);
         sregex_iterator end;
         for (; pos != end; ++pos) {
